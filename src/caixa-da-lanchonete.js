@@ -1,59 +1,53 @@
+import { Cardapio } from "./cardapio";
+import { FormasDePagamento } from "./formas-de-pagamento";
+import { Usabilidade } from "./usabilidade";
+
+
+
+
 class CaixaDaLanchonete {
 
     calcularValorDaCompra(metodoDePagamento, itens) {
         let resposta;
-
+        
+        const formaDePagamento = new FormasDePagamento();
+        if (!formaDePagamento.validarForma(metodoDePagamento)){
+            return "Forma de pagamento inválida!" ;
+            
+        }
+        if (itens.length === 0){
+            return "Não há itens no carrinho de compra!";
+        }
+        pedidos = itens.map(element => {
+            Usabilidade.separarString(element);
+            
+        });
+        if (pedidos.some(element => element.includes(0))){
+            return "Quantidade inválida!"
+        }
+        if (pedidos.some(element => element.length === 0) || !((element)  => {new Cardapio().getValor(element[0])})){
+            return 'Item inválido!'
+        }
+    
+        console.log(resposta)
         return resposta;
     }
-
 }
 
 export { CaixaDaLanchonete };
 
-class Cardapio {
-  constructor() {
-    this.itens = {
-      cafe: 3.00,
-      chantily: 1.50,
-      suco: 6.20,
-      sanduiche: 6.50,
-      queijo: 2.00,
-      salgado: 7.25,
-      combo1: 9.50,
-      combo2: 7.50
-    };
-  }
+console.log(new CaixaDaLanchonete().calcularValorDaCompra('credo', ['cafe,1','chantily,1']))
 
-  getValor(comida) {
-    return this.itens[comida] || 0;
-  }
-
-  toString(comida) {
-    const cardapioNomes = {
-      cafe: "Café",
-      chantily: "Chantily (extra do Café)",
-      suco: "Suco Natural",
-      sanduiche: "Sanduíche",
-      queijo: "Queijo (extra do Sanduíche)",
-      salgado: "Salgado",
-      combo1: "1 Suco e 1 Sanduíche",
-      combo2: "1 Café e 1 Sanduíche"
-    };
-
-    return cardapioNomes[comida] || "Item não encontrado";
-  }
+class CaixaDaLanchoneteError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "CaixaDaLanchoneteError";
+    }
 }
 
-export {Cardapio}
-class Usabilidade {
-  static separarString(stringComVirgula) {
-    const [parte1, parte2] = stringComVirgula.split(',');
-    return [parte1, Number(parte2)];
-  }
+export { CaixaDaLanchoneteError };
 
-  static juntarString(string, numero) {
-    return `${string} ${numero}`;
-}
-}
-export {Usabilidade}
+
+
+
 
