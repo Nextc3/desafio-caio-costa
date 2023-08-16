@@ -10,6 +10,11 @@ class Cardapio {
             combo1: 9.50,
             combo2: 7.50
         };
+        this.extras = [
+            {extra:"chantily",principal: "cafe"},
+            {extra:"queijo", principal:"sanduiche"}
+
+        ];
     }
 
     getValor(comida) {
