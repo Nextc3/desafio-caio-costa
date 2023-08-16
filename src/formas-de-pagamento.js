@@ -16,16 +16,16 @@ class FormasDePagamento {
     }
   
     calcularTotal(valorOriginal, forma) {
-      if (!this.validarForma(forma)) {
-        return "Forma de pagamento inválida!";
-      }
+      
   
       const fator = this.formas[forma];
       const valorTotal = valorOriginal * fator;
   
-      return valorTotal.toFixed(2); // Arredonda para 2 casas decimais
+      return valorTotal.toFixed(2).replace(".",",") // Arredonda para 2 casas decimais e substitui ponto por virgula
     }
   };
   
   
   export {FormasDePagamento};
+
+  //console.log(new FormasDePagamento().calcularTotal(4,"credito"))

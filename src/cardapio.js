@@ -1,15 +1,19 @@
 class Cardapio {
     constructor() {
-        this.itens = {
-            cafe: 3.00,
-            chantily: 1.50,
-            suco: 6.20,
-            sanduiche: 6.50,
-            queijo: 2.00,
-            salgado: 7.25,
-            combo1: 9.50,
-            combo2: 7.50
-        };
+        this.itens = 
+            this.itens = {
+                cafe: 3.00,
+                chantily: 1.50,
+                suco: 6.20,
+                sanduiche: 6.50,
+                queijo: 2.00,
+                salgado: 7.25,
+                combo1: 9.50,
+                combo2: 7.50
+            };
+            
+              
+        
         this.extras = [
             {extra:"chantily",principal: "cafe"},
             {extra:"queijo", principal:"sanduiche"}
@@ -20,7 +24,7 @@ class Cardapio {
     getValor(comida) {
         return this.itens[comida] || false;
     }
-
+    /*
     toString(comida) {
         const cardapioNomes = {
             cafe: "Café",
@@ -34,7 +38,9 @@ class Cardapio {
         };
 
         return cardapioNomes[comida] || false;
-    }
-}
+    } */
+};
 
 export { Cardapio };
+
+//console.log(new Cardapio().getValor("cafe"))
